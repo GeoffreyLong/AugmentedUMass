@@ -60,6 +60,10 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         return this.pastOCRs;
     }
 
+    public void removePastOCRs() {
+        this.pastOCRs.clear();
+    }
+
     /**
      * Frees the resources associated with this detection processor.
      */

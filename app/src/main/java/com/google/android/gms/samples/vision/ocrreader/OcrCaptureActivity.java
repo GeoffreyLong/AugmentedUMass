@@ -97,6 +97,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     private boolean mRequestingLocationUpdates;
     private LocationRequest mLocationRequest;
     private Location mCurrentLocation;
+    private Location mPastLocation;
 
     private OcrDetectorProcessor ocrDetector;
 
@@ -164,8 +165,6 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     }
 
     private void updatePlace() {
-        System.out.println(ocrDetector.getPastOCRs().toString());
-
         Toast.makeText(this, "Location Updated", Toast.LENGTH_SHORT).show();
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -183,11 +182,22 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
             @Override
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
                 try {
+                    // Should check the OCR if the OCR is valid
+                    if (mCurrentLocation != null) {
+                        System.out.println(ocrDetector.getPastOCRs().toString());
+
+                        // If we are greater than 20 meters away from the last clear, clear the OCR readings
+                        // We will actually want to cull only the last readings that are of a certain distance
+                        // TODO refactor the OCR so that it has the string, approx location (perhaps), and distance from current
+                        if (mPastLocation != null && mPastLocation.distanceTo(mCurrentLocation) > 20) {
+                            ocrDetector.removePastOCRs();
+                            mPastLocation = mCurrentLocation;
+                        }
+                    }
+
                     name = likelyPlaces.get(0).getPlace().getName();
                     rating = likelyPlaces.get(0).getPlace().getRating();
                     price = likelyPlaces.get(0).getPlace().getPriceLevel();
-
-
                 }
                 catch(IllegalStateException e){
                     name = "";
