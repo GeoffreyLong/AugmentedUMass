@@ -1,7 +1,7 @@
-#Sat Oct 08 01:03:37 EDT 2016
-base.0=C\:\\Users\\techb\\AndroidStudioProjects\\AugmentedUMass\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_4c9ba57e38ade76983af1e0eb6e6cd52563ca782
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=C\:\\Users\\techb\\AndroidStudioProjects\\AugmentedUMass\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4c8a8291b90449aea6682a0251c48bcc11fdf4bb\\classes.dex
-base.1=C\:\\Users\\techb\\AndroidStudioProjects\\AugmentedUMass\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4c8a8291b90449aea6682a0251c48bcc11fdf4bb
-file.0=C\:\\Users\\techb\\AndroidStudioProjects\\AugmentedUMass\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_4c9ba57e38ade76983af1e0eb6e6cd52563ca782\\classes.dex
+#Sat Oct 08 00:19:06 EDT 2016
+base.0=C\:\\Users\\GeoffreyLong\\Downloads\\Camera2Basic\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_d9c1f8e4c8060709d2b975401148dbd91b8d1b78
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Users\\GeoffreyLong\\Downloads\\Camera2Basic\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_bd6072721886ba5cc8cfabd0ec51fb5cea47bc84\\classes.dex
+base.1=C\:\\Users\\GeoffreyLong\\Downloads\\Camera2Basic\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_bd6072721886ba5cc8cfabd0ec51fb5cea47bc84
+file.0=C\:\\Users\\GeoffreyLong\\Downloads\\Camera2Basic\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_d9c1f8e4c8060709d2b975401148dbd91b8d1b78\\classes.dex
