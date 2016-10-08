@@ -5,4 +5,5 @@ package com.google.android.gms.samples.vision.face.facetracker.locations;
  */
 
 public class Destination {
+
 }
