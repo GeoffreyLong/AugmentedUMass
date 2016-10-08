@@ -29,6 +29,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -68,6 +69,7 @@ public final class FaceTrackerActivity extends AppCompatActivity implements OnCo
     private static final int RC_HANDLE_GMS = 9001;
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
+    public static ListView detail = (ListView)findViewById(R.id.details);
 
     //==============================================================================================
     // Activity Methods

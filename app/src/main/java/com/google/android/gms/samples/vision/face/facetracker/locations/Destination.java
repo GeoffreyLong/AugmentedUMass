@@ -1,9 +1,16 @@
 package com.google.android.gms.samples.vision.face.facetracker.locations;
 
 import android.net.Uri;
+import android.support.annotation.Nullable;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceDetectionApi;
+import com.google.android.gms.location.places.PlaceFilter;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.PlaceReport;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
@@ -15,6 +22,18 @@ import java.util.Locale;
  */
 
 public class Destination {
+    PlaceDetectionApi pda = new PlaceDetectionApi() {
+        @Override
+        public PendingResult<PlaceLikelihoodBuffer> getCurrentPlace(GoogleApiClient googleApiClient, @Nullable PlaceFilter placeFilter) {
+            return null;
+        }
+
+        @Override
+        public PendingResult<Status> reportDeviceAtPlace(GoogleApiClient googleApiClient, PlaceReport placeReport) {
+            return null;
+        }
+    };
+
     Place place = new Place() {
         @Override
         public Place freeze() {
@@ -86,4 +105,8 @@ public class Destination {
             return null;
         }
     };
+
+
+
+
 }

@@ -18,9 +18,19 @@ package com.google.android.gms.samples.vision.face.facetracker;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.net.Uri;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.samples.vision.face.facetracker.locations.Destination;
 import com.google.android.gms.samples.vision.face.facetracker.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.face.Face;
+
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Graphic instance for rendering face position, orientation, and landmarks within an associated
@@ -112,5 +122,107 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         float right = x + xOffset;
         float bottom = y + yOffset;
         canvas.drawRect(left, top, right, bottom, mBoxPaint);
+    }
+    //===============================================================
+// GUI for places (name, rating, price, type)
+// ==============================================================
+    public void putList() {
+        ListView detail = FaceTrackerActivity.detail;
+        Destination deets = new Destination();
+        Place place = new Place() {
+            @Override
+            public Place freeze() {
+                return null;
+            }
+
+            @Override
+            public boolean isDataValid() {
+                return false;
+            }
+
+            @Override
+            public String getId() {
+                return null;
+            }
+
+            @Override
+            public List<Integer> getPlaceTypes() {
+                return null;
+            }
+
+            @Override
+            public CharSequence getAddress() {
+                return null;
+            }
+
+            @Override
+            public Locale getLocale() {
+                return null;
+            }
+
+            @Override
+            public CharSequence getName() {
+                return null;
+            }
+
+            @Override
+            public LatLng getLatLng() {
+                return null;
+            }
+
+            @Override
+            public LatLngBounds getViewport() {
+                return null;
+            }
+
+            @Override
+            public Uri getWebsiteUri() {
+                return null;
+            }
+
+            @Override
+            public CharSequence getPhoneNumber() {
+                return null;
+            }
+
+            @Override
+            public float getRating() {
+                return 0;
+            }
+
+            @Override
+            public int getPriceLevel() {
+                return 0;
+            }
+
+            @Override
+            public CharSequence getAttributions() {
+                return null;
+            }
+        };
+
+// Get ListView object from xml
+        String title;
+        float stars;
+        int dollar;
+
+        title = (String) place.getName();
+        stars = place.getRating();
+        dollar = place.getPriceLevel();
+
+        // Defined Array values to show in ListView, converts other values into strings to display
+        String[] values = new String[]{title, String.valueOf(stars) + "/5", String.valueOf(dollar)};
+
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_1, values);
+
+        // Assign adapter to ListView
+        detail.setAdapter(adapter);
     }
 }
