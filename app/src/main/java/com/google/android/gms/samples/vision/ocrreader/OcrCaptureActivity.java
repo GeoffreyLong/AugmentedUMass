@@ -51,6 +51,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
@@ -159,7 +161,6 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
                 .build();
 
 
-        updatePlace();
     }
 
     private void updatePlace() {
@@ -179,10 +180,22 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
             @Override
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
+
+
+                int i = 0;
+                for(i = 0; i < likelyPlaces.getCount(); i++){
+                    if(new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0))
+                            .including(new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()))
+                            .contains(likelyPlaces.get(i).getPlace().getLatLng())){
+                        break;
+                    }
+                }
+
+
                 try {
-                    name = likelyPlaces.get(0).getPlace().getName();
-                    rating = likelyPlaces.get(0).getPlace().getRating();
-                    price = likelyPlaces.get(0).getPlace().getPriceLevel();
+                    name = likelyPlaces.get(i).getPlace().getName();
+                    rating = likelyPlaces.get(i).getPlace().getRating();
+                    price = likelyPlaces.get(i).getPlace().getPriceLevel();
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -447,7 +460,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     @Override
     public void onLocationChanged(Location location) {
         mCurrentLocation = location;
-        Toast.makeText(this, "Lat: " + mCurrentLocation + "\n" + "Lon: " + mCurrentLocation.getLongitude(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Lat: " + mCurrentLocation.getLatitude() + "\n" + "Lon: " + mCurrentLocation.getLongitude(), Toast.LENGTH_LONG).show();
         updatePlace();
     }
 }
