@@ -98,6 +98,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     private LocationRequest mLocationRequest;
     private Location mCurrentLocation;
 
+    private OcrDetectorProcessor ocrDetector;
 
 
     protected void onStart() {
@@ -163,6 +164,8 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     }
 
     private void updatePlace() {
+        System.out.println(ocrDetector.getPastOCRs().toString());
+
         Toast.makeText(this, "Location Updated", Toast.LENGTH_SHORT).show();
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -183,6 +186,8 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
                     name = likelyPlaces.get(0).getPlace().getName();
                     rating = likelyPlaces.get(0).getPlace().getRating();
                     price = likelyPlaces.get(0).getPlace().getPriceLevel();
+
+
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -250,7 +255,9 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         // is set to receive the text recognition results and display graphics for each text block
         // on screen.
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+        ocrDetector = new OcrDetectorProcessor(mGraphicOverlay);
+        textRecognizer.setProcessor(ocrDetector);
+
 
         if (!textRecognizer.isOperational()) {
             // Note: The first time that an app using a Vision API is installed on a
