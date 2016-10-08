@@ -99,7 +99,9 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     private boolean mRequestingLocationUpdates;
     private LocationRequest mLocationRequest;
     private Location mCurrentLocation;
+    private Location mPastLocation;
 
+    private OcrDetectorProcessor ocrDetector;
 
 
     protected void onStart() {
@@ -193,9 +195,28 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
 
 
                 try {
+<<<<<<< HEAD
                     name = likelyPlaces.get(i).getPlace().getName();
                     rating = likelyPlaces.get(i).getPlace().getRating();
                     price = likelyPlaces.get(i).getPlace().getPriceLevel();
+=======
+                    // Should check the OCR if the OCR is valid
+                    if (mCurrentLocation != null) {
+                        System.out.println(ocrDetector.getPastOCRs().toString());
+
+                        // If we are greater than 20 meters away from the last clear, clear the OCR readings
+                        // We will actually want to cull only the last readings that are of a certain distance
+                        // TODO refactor the OCR so that it has the string, approx location (perhaps), and distance from current
+                        if (mPastLocation != null && mPastLocation.distanceTo(mCurrentLocation) > 20) {
+                            ocrDetector.removePastOCRs();
+                            mPastLocation = mCurrentLocation;
+                        }
+                    }
+
+                    name = likelyPlaces.get(0).getPlace().getName();
+                    rating = likelyPlaces.get(0).getPlace().getRating();
+                    price = likelyPlaces.get(0).getPlace().getPriceLevel();
+>>>>>>> 482b1be8c85730bd5654a857611b432c9e12ceb0
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -263,7 +284,9 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         // is set to receive the text recognition results and display graphics for each text block
         // on screen.
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+        ocrDetector = new OcrDetectorProcessor(mGraphicOverlay);
+        textRecognizer.setProcessor(ocrDetector);
+
 
         if (!textRecognizer.isOperational()) {
             // Note: The first time that an app using a Vision API is installed on a
