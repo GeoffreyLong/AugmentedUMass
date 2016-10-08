@@ -3,6 +3,204 @@
 
     <item
         is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_07e08ff11b1ead2832652d1e4c70ef58214bb457\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="670df81539ab71918d49b186598b7eff08ef6563">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.4.0_02fea1d686d8a066702c750861270bba839e2888\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.0_b8b020361160c01f6e90d53ce19cd647392cf38a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_f646344827701e199efc4e7d0ea5aef49898239e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.0_c963646f12a3506dfcbabcc9cbae7823b4e4d2b6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_11047cdadc4f3abfd7fe3f47df84fa60e88c7439\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.0_19e7afcfee781b94ef68407e260c9049da973a88\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_3b306338079169bddd553aeae1eaece0a91f19fd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.0_21d6f08d92876c35218da7b753321e6094acfa65\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.0_7ca87b3a1258c76ab34362d2feb9c2bf9186ab74\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_7040ee01e173f1242f82260ad8757a78c16fecbd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_047e2b0d2f7033ba6b3fa832171b8833ff646086\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="670df81539ab71918d49b186598b7eff08ef6563">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.4.0_7a0375c16f5367f434e6d8c203d5cc7acf06cd33\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="72eb7d92aa2a285934b737b6bdce7b1a36fa4c4e">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_48a946e78c48e842ae259b6d52aa45ac389b14cb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.0_bb1854fe6631c89ccb3999f7af9ef8570b532e56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.0_dd80b715e2b5c15dd09c8b5ba1536097c8895bfa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\design\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.0_6e7bc97c9e0d0ccf6cd175180c117ae70535960f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_ca143aac41687d2f7b6dd50bfc7b4b9896e430ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.0_ce4df4cd75b8fae60fe8bafbd817f2a44424bbe1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.0\support-annotations-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.0_e2bab7ca602ddb73443b797619921367a9dcc5ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.0_970267b614f9d2e35faed6f99414ad5610654e5c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.0_faac3bc19249d08448defef81b0d45c2fa9982c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -39,12 +237,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_3b306338079169bddd553aeae1eaece0a91f19fd\classes.dex" />
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_3d8a1c18f6c9a4ff240e8526995b59838daff1cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.0_3cece4325c077edbb18ee4d4158fc4c8cd2b201f\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -66,15 +273,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="670df81539ab71918d49b186598b7eff08ef6563">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.4.0_7a0375c16f5367f434e6d8c203d5cc7acf06cd33\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
         jumboMode="true"
         optimize="true"
@@ -93,21 +291,21 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.0_2f05da0b70bf5eea2faa18196d8d1fc8adc651ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
         <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.0_2ff854041825cc2b26b743eee45566a4a78f73a0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="72eb7d92aa2a285934b737b6bdce7b1a36fa4c4e">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_48a946e78c48e842ae259b6d52aa45ac389b14cb\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,6 +318,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5a7d9de4ff6882fe0cdd2175e343417e1123476f">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7307e5f0fef0ff936b607fe2ccbdcc8b11b63490\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\libs\internal_impl-24.2.0.jar"
         jumboMode="true"
         optimize="true"
@@ -129,21 +336,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="3dee4ce5844d39d843d503fb8fe04e51e5bfffac">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.4.0_ca143aac41687d2f7b6dd50bfc7b4b9896e430ec\classes.dex" />
+        sha1="8a36d229011e75f0caef408e1adf0d3fd4d94e02">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.4.0_5bcbfcf1364787433f128b863cfc1c307fa6ac26\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\techb\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.0\support-annotations-24.2.0.jar"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.0_e2bab7ca602ddb73443b797619921367a9dcc5ff\classes.dex" />
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_ab2a631a856a0150b6e8b00d558195a82c1e5370\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -156,21 +363,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\classes.jar"
+        jar="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.0_970267b614f9d2e35faed6f99414ad5610654e5c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="C:\Users\techb\AndroidStudioProjects\android-vision\visionSamples\FaceTracker\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.0_faac3bc19249d08448defef81b0d45c2fa9982c1\classes.dex" />
+        sha1="16ab0d4ef0a563303eae98ba21f72d7e2037d7f3">
+        <dex dex="C:\Users\techb\AndroidStudioProjects\AugmentedUMass\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_f1138c82175010398f9cdc682bb16a333c5ec1c2\classes.dex" />
     </item>
     <item
         is-multidex="true"
