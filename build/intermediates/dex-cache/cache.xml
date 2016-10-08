@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.3.0_bd16bde3c5825fbb3be48e4df1cb50fd85cad18d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.3.0_8807f6ba6eb443bf41fc3ba9549b5812ba84876b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="9e56175b360e96854d339e8f209876fc87639208">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_bd6072721886ba5cc8cfabd0ec51fb5cea47bc84\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a809555a2599054c3dcd1bf82b089315ac3a11df">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-23.3.0_f1581f6dcb0d23874d6dc56165d6f18d856132b5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.3.0\support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.3.0_1119a95c456beb2f827d79f3557609aadad7e342\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="28f75291c38032c12cb1048b3dbe54aaf94f03eb">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_d9c1f8e4c8060709d2b975401148dbd91b8d1b78\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.0_baa7962297bdd4288887aff92830efa6d673f7c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_4a8939c0998c0a43b66ce55302b9b90ac19fdda0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.3.0\jars\libs\internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8813bdcf7583107c4873150075d17c8072ec50cf">
+        <dex dex="C:\Users\GeoffreyLong\Downloads\Camera2Basic\Application\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.3.0_affe633bf9a7d8308dfeadd8621852bd0735adbd\classes.dex" />
+    </item>
+
+</items>
