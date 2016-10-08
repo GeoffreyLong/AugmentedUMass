@@ -5,6 +5,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -31,6 +32,10 @@
 
         <activity android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
             android:label="Read Text" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB9dv7flG2ZcUi5v2TQNexWakp3Vyz8hoQ"/>
     </application>
 
 </manifest>

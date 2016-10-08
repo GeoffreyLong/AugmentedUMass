@@ -37,11 +37,19 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.*;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
@@ -55,7 +63,7 @@ import java.io.IOException;
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
  * size, and contents of each TextBlock.
  */
-public final class OcrCaptureActivity extends AppCompatActivity {
+public final class OcrCaptureActivity extends AppCompatActivity implements OnConnectionFailedListener {
     private static final String TAG = "OcrCaptureActivity";
 
     // Intent request code to handle updating play services if needed.
@@ -76,6 +84,16 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     // Helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+
+    private GoogleApiClient mGoogleApiClient;
+    int ACCESS_TO_FINE_LOCATION = 0;
+    private TextView tv_closest, tv_price;
+    private CharSequence name;
+    private int price;
+    private float rating;
+    private RatingBar rb_rating;
+    private String[] data;
+
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -107,6 +125,54 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
                 .show();
+
+        tv_closest = (TextView) findViewById(R.id.textViewName);
+        tv_price = (TextView)findViewById(R.id.textViewPrice);
+        rb_rating = (RatingBar)findViewById(R.id.ratingBar);
+
+        data = new String[3];
+
+        ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_TO_FINE_LOCATION);
+
+
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(this)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .enableAutoManage(this, this)
+                .build();
+
+
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi
+                .getCurrentPlace(mGoogleApiClient, null);
+        result.setResultCallback(new ResultCallback<PlaceLikelihoodBuffer>() {
+            @Override
+            public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
+
+                name = likelyPlaces.get(0).getPlace().getName();
+                rating = likelyPlaces.get(0).getPlace().getRating();
+                price = likelyPlaces.get(0).getPlace().getPriceLevel();
+
+
+                tv_closest.setText(name);
+                rb_rating.setRating((int)rating);
+                tv_price.setText(price + "");
+
+                likelyPlaces.release();
+            }
+        });
+
     }
 
     /**
@@ -339,6 +405,11 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             Log.d(TAG,"no text detected");
         }
         return text != null;
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
