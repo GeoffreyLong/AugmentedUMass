@@ -5,4 +5,11 @@ package com.google.android.gms.samples.vision.face.facetracker.locations;
  */
 
 public class Destination {
+    public int rating;
+    public String name;
+    // etc
+
+    public void getDestination() {
+        // Populate via the places api
+    }
 }
