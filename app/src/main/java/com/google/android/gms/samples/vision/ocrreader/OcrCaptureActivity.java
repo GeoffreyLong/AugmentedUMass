@@ -135,6 +135,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_TO_FINE_LOCATION);
 
 
+
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)
                 .addApi(Places.GEO_DATA_API)
