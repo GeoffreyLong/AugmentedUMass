@@ -20,9 +20,8 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
 
-        <activity
-            android:name="com.google.android.gms.samples.vision.ocrreader.MainActivity"
-            android:label="@string/title_activity_main" >
+        <activity android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
+            android:label="ARPlace">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
-            android:label="Read Text" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
