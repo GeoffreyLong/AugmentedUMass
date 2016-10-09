@@ -208,6 +208,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
 
 
+                /*
                 int i = 0;
                 for(i = 0; i < likelyPlaces.getCount(); i++){
                     if(new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0))
@@ -216,6 +217,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
                         break;
                     }
                 }
+                */
 
                 /* OCR THINGS... not really using right now
                 IF we are using this, then we can include this as one of the likelihoods for our overall opinion
@@ -233,7 +235,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
                 }
                 */
 
-                int mostLikely = i;
+                int mostLikely = 0;
 
                 // Figure out the most likely location based on what you are facing and where you are
                 // The tricky thing is figuring out when to take distance into account over heading
@@ -242,10 +244,11 @@ public final class OcrCaptureActivity extends AppCompatActivity
                 // Could also use computer vision to estimate a distance to the location (possibly)
                 float curBearing = orientation[0];
                 double curBearingDeg = curBearing * 180.0 / Math.PI;
+                curBearingDeg += 180;
                 double lowEstimate = 360;
                 // Subtract to guard overflow
                 double curDistance = Double.MAX_VALUE - 50;
-                for (i = 0; i < likelyPlaces.getCount(); i++) {
+                for (int i = 0; i < likelyPlaces.getCount(); i++) {
                     // Estimate the bearing from the user to the location
                     LatLng placeLoc = likelyPlaces.get(i).getPlace().getLatLng();
                     double estimatedBearing = bearing(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
@@ -273,7 +276,9 @@ public final class OcrCaptureActivity extends AppCompatActivity
                         // Or if the angle is great enough to overcome the buffer we placed, then we are good
                         // This buffer will not work for large buildings
                         // TODO might want to put a max distance greater than...
-                        if (estimatedDistance < curDistance + 20 || diffAngle >= Math.acos(curDistance/20.0)) {
+                        Log.d("COSINE", String.valueOf(Math.atan(10.0 / curDistance)));
+                        if (estimatedDistance <= 20 && (estimatedDistance < curDistance + 10
+                                || diffAngle >= Math.atan(10.0 / curDistance))) {
                             lowEstimate = curDifference;
                             curDistance = estimatedDistance;
                             curBearingDeg = estimatedBearing;
@@ -649,11 +654,12 @@ public final class OcrCaptureActivity extends AppCompatActivity
             if (success) {
                 // TODO moving average over this orientation... say a window of size 10?
                 orientation = new float[3];
+                SensorManager.remapCoordinateSystem(R, SensorManager.AXIS_X, SensorManager.AXIS_Z, orientation);
                 SensorManager.getOrientation(R, orientation);
 
                 // Will output a value between 0 and 2pi
-                // Log.d("AZAZ", Float.toString(azimuth));
                 // float azimuth = orientation[0];
+                // Log.d("AZAZ", Double.toString(azimuth * 180.0 / Math.PI));
             }
         }
     }
