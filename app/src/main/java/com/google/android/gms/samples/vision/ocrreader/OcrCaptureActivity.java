@@ -26,6 +26,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -66,7 +70,8 @@ import java.util.concurrent.TimeUnit;
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
  * size, and contents of each TextBlock.
  */
-public final class OcrCaptureActivity extends AppCompatActivity implements OnConnectionFailedListener, ConnectionCallbacks, LocationListener {
+public final class OcrCaptureActivity extends AppCompatActivity
+        implements OnConnectionFailedListener, ConnectionCallbacks, LocationListener, SensorEventListener {
     private static final String TAG = "OcrCaptureActivity";
 
     // Intent request code to handle updating play services if needed.
@@ -102,6 +107,14 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
     private Location mPastLocation;
 
     private OcrDetectorProcessor ocrDetector;
+
+    // For the orientation information
+    private SensorManager mSensorManager;
+    Sensor accelerometer;
+    Sensor magnetometer;
+    float[] mGravity;
+    float[] mGeomagnetic;
+    float[] orientation = new float[3];
 
 
     protected void onStart() {
@@ -163,6 +176,11 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
                 .build();
 
 
+        // For the compass orientation
+        mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        accelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
     }
 
     private void updatePlace() {
@@ -195,11 +213,10 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
 
 
                 try {
-<<<<<<< HEAD
                     name = likelyPlaces.get(i).getPlace().getName();
                     rating = likelyPlaces.get(i).getPlace().getRating();
                     price = likelyPlaces.get(i).getPlace().getPriceLevel();
-=======
+
                     // Should check the OCR if the OCR is valid
                     if (mCurrentLocation != null) {
                         System.out.println(ocrDetector.getPastOCRs().toString());
@@ -213,10 +230,6 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
                         }
                     }
 
-                    name = likelyPlaces.get(0).getPlace().getName();
-                    rating = likelyPlaces.get(0).getPlace().getRating();
-                    price = likelyPlaces.get(0).getPlace().getPriceLevel();
->>>>>>> 482b1be8c85730bd5654a857611b432c9e12ceb0
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -333,6 +346,10 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         if (mGoogleApiClient.isConnected() && !mRequestingLocationUpdates) {
             startLocationUpdates();
         }
+
+        // Start the accelerometer and magnetometer
+        mSensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_UI);
     }
 
     /**
@@ -344,6 +361,9 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         if (mPreview != null) {
             mPreview.stop();
         }
+
+        // Stop listening to the sensors
+        mSensorManager.unregisterListener(this);
     }
 
     /**
@@ -485,5 +505,31 @@ public final class OcrCaptureActivity extends AppCompatActivity implements OnCon
         mCurrentLocation = location;
         Toast.makeText(this, "Lat: " + mCurrentLocation.getLatitude() + "\n" + "Lon: " + mCurrentLocation.getLongitude(), Toast.LENGTH_LONG).show();
         updatePlace();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+            mGravity = sensorEvent.values;
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+            mGeomagnetic = sensorEvent.values;
+        if (mGravity != null && mGeomagnetic != null) {
+            float R[] = new float[9];
+            float I[] = new float[9];
+            boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+            if (success) {
+                float orientation[] = new float[3];
+                SensorManager.getOrientation(R, orientation);
+                float azimuth = orientation[0];
+
+                // Will output a value between 0 and 2pi
+                Log.d("AZAZ", Float.toString(azimuth));
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }
