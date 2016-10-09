@@ -45,6 +45,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
      */
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
+        /* NOT CURRENTLY DOING OCR
         mGraphicOverlay.clear();
         SparseArray<TextBlock> items = detections.getDetectedItems();
         for (int i = 0; i < items.size(); ++i) {
@@ -54,6 +55,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
             pastOCRs.add(item.getValue());
         }
+        */
     }
 
     public LinkedList<String> getPastOCRs() {

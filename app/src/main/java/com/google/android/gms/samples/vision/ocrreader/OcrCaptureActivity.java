@@ -202,6 +202,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
 
 
+                //
                 int i = 0;
                 for(i = 0; i < likelyPlaces.getCount(); i++){
                     if(new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0))
@@ -211,24 +212,28 @@ public final class OcrCaptureActivity extends AppCompatActivity
                     }
                 }
 
+                /* OCR THINGS... not really using right now
+                // Should check the OCR if the OCR is valid
+                if (mCurrentLocation != null) {
+                    System.out.println(ocrDetector.getPastOCRs().toString());
 
+                    // If we are greater than 20 meters away from the last clear, clear the OCR readings
+                    // We will actually want to cull only the last readings that are of a certain distance
+                    // TODO refactor the OCR so that it has the string, approx location (perhaps), and distance from current
+                    if (mPastLocation != null && mPastLocation.distanceTo(mCurrentLocation) > 20) {
+                        ocrDetector.removePastOCRs();
+                        mPastLocation = mCurrentLocation;
+                    }
+                }
+                */
+                for (i = 0; i < likelyPlaces.getCount(); i++) {
+
+                }
                 try {
                     name = likelyPlaces.get(i).getPlace().getName();
                     rating = likelyPlaces.get(i).getPlace().getRating();
                     price = likelyPlaces.get(i).getPlace().getPriceLevel();
 
-                    // Should check the OCR if the OCR is valid
-                    if (mCurrentLocation != null) {
-                        System.out.println(ocrDetector.getPastOCRs().toString());
-
-                        // If we are greater than 20 meters away from the last clear, clear the OCR readings
-                        // We will actually want to cull only the last readings that are of a certain distance
-                        // TODO refactor the OCR so that it has the string, approx location (perhaps), and distance from current
-                        if (mPastLocation != null && mPastLocation.distanceTo(mCurrentLocation) > 20) {
-                            ocrDetector.removePastOCRs();
-                            mPastLocation = mCurrentLocation;
-                        }
-                    }
 
                 }
                 catch(IllegalStateException e){
@@ -518,7 +523,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
             float I[] = new float[9];
             boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
             if (success) {
-                float orientation[] = new float[3];
+                orientation = new float[3];
                 SensorManager.getOrientation(R, orientation);
                 float azimuth = orientation[0];
 
