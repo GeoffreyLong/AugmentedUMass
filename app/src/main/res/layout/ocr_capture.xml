@@ -19,14 +19,6 @@
 
     </com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview>
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/ratingBar" />
-
     <TextView
         android:text="Name: "
         android:layout_width="wrap_content"
@@ -60,5 +52,30 @@
         android:layout_toRightOf="@+id/textViewPriceLabel"
         android:layout_toEndOf="@+id/textViewPriceLabel"
         android:id="@+id/textViewPrice" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Type: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPriceLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textViewDescriptionLabel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPriceLabel"
+        android:layout_toRightOf="@+id/textViewDescriptionLabel"
+        android:layout_toEndOf="@+id/textViewDescriptionLabel"
+        android:id="@+id/textViewDescription" />
 
 </RelativeLayout>

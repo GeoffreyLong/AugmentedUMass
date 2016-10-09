@@ -53,6 +53,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
@@ -60,9 +61,11 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
+import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -95,11 +98,13 @@ public final class OcrCaptureActivity extends AppCompatActivity
 
     private GoogleApiClient mGoogleApiClient;
     int ACCESS_TO_FINE_LOCATION = 0;
-    private TextView tv_closest, tv_price;
+    private TextView tv_closest, tv_price, tv_desc;
     private CharSequence name;
     private int price;
     private float rating;
+    private List<Integer> placeType;
     private RatingBar rb_rating;
+    private String typeOfPlace;
 
     private boolean mRequestingLocationUpdates;
     private LocationRequest mLocationRequest;
@@ -160,6 +165,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
         tv_closest = (TextView) findViewById(R.id.textViewName);
         tv_price = (TextView) findViewById(R.id.textViewPrice);
         rb_rating = (RatingBar) findViewById(R.id.ratingBar);
+        tv_desc = (TextView) findViewById(R.id.textViewDescription);
 
 
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_TO_FINE_LOCATION);
@@ -280,6 +286,8 @@ public final class OcrCaptureActivity extends AppCompatActivity
                     name = likelyPlaces.get(mostLikely).getPlace().getName();
                     rating = likelyPlaces.get(mostLikely).getPlace().getRating();
                     price = likelyPlaces.get(mostLikely).getPlace().getPriceLevel();
+                    placeType = likelyPlaces.get(mostLikely).getPlace().getPlaceTypes();
+
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -287,10 +295,49 @@ public final class OcrCaptureActivity extends AppCompatActivity
                     price = 0;
                 }
 
-
+                typeOfPlace = "";
                 tv_closest.setText(name);
                 rb_rating.setRating((int) rating);
-                tv_price.setText(price + "");
+                if(price != -1) {
+                    tv_price.setText(price + "");
+                }
+                else if(price == -1){
+                    tv_price.setText("N/A");
+                }
+                int[] types = new int[placeType.size()];
+                for(int d = 0; d < placeType.size(); d++){
+                    types[d] = placeType.get(d);
+                }
+                for(int d = 0; d < types.length; d++){
+                    switch(types[d]){
+                        case Place.TYPE_CAFE:
+                            typeOfPlace += "Cafe \n";
+                            break;
+                        case Place.TYPE_BAKERY:
+                            typeOfPlace += "Bakery \n";
+                            break;
+                        case Place.TYPE_FOOD:
+                            typeOfPlace += "Restaurant \n";
+                            break;
+                        case Place.TYPE_MEAL_DELIVERY:
+                            typeOfPlace += "Deliver, \n";
+                            break;
+                        case Place.TYPE_MEAL_TAKEAWAY:
+                            typeOfPlace += "Takeout \n";
+                            break;
+                        case Place.TYPE_BAR:
+                            typeOfPlace += "Bar \n";
+                            break;
+                        case Place.TYPE_SCHOOL:
+                            typeOfPlace += "School \n";
+                            break;
+                        case Place.TYPE_UNIVERSITY:
+                            typeOfPlace += "University \n";
+                            break;
+                    }
+                }
+
+                tv_desc.setText(typeOfPlace);
 
                 likelyPlaces.release();
             }
