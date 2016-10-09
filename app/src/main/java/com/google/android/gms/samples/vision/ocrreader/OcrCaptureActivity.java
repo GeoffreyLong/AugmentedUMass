@@ -202,7 +202,6 @@ public final class OcrCaptureActivity extends AppCompatActivity
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
 
 
-                //
                 int i = 0;
                 for(i = 0; i < likelyPlaces.getCount(); i++){
                     if(new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0))
@@ -213,6 +212,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
                 }
 
                 /* OCR THINGS... not really using right now
+                IF we are using this, then we can include this as one of the likelihoods for our overall opinion
                 // Should check the OCR if the OCR is valid
                 if (mCurrentLocation != null) {
                     System.out.println(ocrDetector.getPastOCRs().toString());
@@ -226,15 +226,60 @@ public final class OcrCaptureActivity extends AppCompatActivity
                     }
                 }
                 */
+
+                int mostLikely = i;
+
+                // Figure out the most likely location based on what you are facing and where you are
+                // The tricky thing is figuring out when to take distance into account over heading
+                // I guess heading should usually take precedence... need to figure this out though
+                // Could theoretically figure out if one place "occludes" the view of the other
+                // Could also use computer vision to estimate a distance to the location (possibly)
+                float curBearing = orientation[0];
+                double curBearingDeg = curBearing * 180.0 / Math.PI;
+                double lowEstimate = 360;
+                // Subtract to guard overflow
+                double curDistance = Double.MAX_VALUE - 50;
                 for (i = 0; i < likelyPlaces.getCount(); i++) {
+                    // Estimate the bearing from the user to the location
+                    LatLng placeLoc = likelyPlaces.get(i).getPlace().getLatLng();
+                    double estimatedBearing = bearing(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
+                                                        placeLoc.latitude, placeLoc.longitude);
 
+
+                    double curDifference = Math.abs(estimatedBearing - curBearingDeg);
+                    if (curDifference < lowEstimate){
+                        // Get the distance to the location
+                        // We don't want to focus on objects that may be behind a foreground object
+                        // I assume a sphere of 20 meters around each lat/long, the line of sight has to clear this sphere
+                        // So I say that if the distance to the object is 20 meters greater than the current best
+                        //      Then the angle to that object needs to be great enough to render the object visible around the obj
+                        // There are better ways to deal with the occlusion, but this will do for now
+                        // TODO make better
+                        double estimatedDistance = distance(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
+                                placeLoc.latitude, placeLoc.longitude, 0, 0);
+                        double diffAngle = Math.abs(estimatedBearing - curBearingDeg);
+                        Log.d("ANGLE EST", String.valueOf(estimatedBearing));
+                        Log.d("ANGLE CUR", String.valueOf(curBearingDeg));
+                        Log.d("DIST EST", String.valueOf(estimatedDistance));
+                        Log.d("DIST CUR", String.valueOf(curDistance));
+
+                        // If the new location is closer than the current one by a margin
+                        // Or if the angle is great enough to overcome the buffer we placed, then we are good
+                        // This buffer will not work for large buildings
+                        // TODO might want to put a max distance greater than...
+                        if (estimatedDistance < curDistance + 20 || diffAngle >= Math.acos(curDistance/20.0)) {
+                            lowEstimate = curDifference;
+                            curDistance = estimatedDistance;
+                            curBearingDeg = estimatedBearing;
+                            mostLikely = i;
+                        }
+                    }
                 }
+
                 try {
-                    name = likelyPlaces.get(i).getPlace().getName();
-                    rating = likelyPlaces.get(i).getPlace().getRating();
-                    price = likelyPlaces.get(i).getPlace().getPriceLevel();
-
-
+                    name = likelyPlaces.get(mostLikely).getPlace().getName();
+                    rating = likelyPlaces.get(mostLikely).getPlace().getRating();
+                    price = likelyPlaces.get(mostLikely).getPlace().getPriceLevel();
                 }
                 catch(IllegalStateException e){
                     name = "";
@@ -251,6 +296,38 @@ public final class OcrCaptureActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    protected static double bearing(double lat1, double lon1, double lat2, double lon2){
+        double longitude1 = lon1;
+        double longitude2 = lon2;
+        double latitude1 = Math.toRadians(lat1);
+        double latitude2 = Math.toRadians(lat2);
+        double longDiff= Math.toRadians(longitude2-longitude1);
+        double y= Math.sin(longDiff)*Math.cos(latitude2);
+        double x=Math.cos(latitude1)*Math.sin(latitude2)-Math.sin(latitude1)*Math.cos(latitude2)*Math.cos(longDiff);
+
+        return (Math.toDegrees(Math.atan2(y, x))+360)%360;
+    }
+
+    public static double distance(double lat1, double lon1, double lat2,
+                                  double lon2, double el1, double el2) {
+
+        final int R = 6371; // Radius of the earth
+
+        Double latDistance = Math.toRadians(lat2 - lat1);
+        Double lonDistance = Math.toRadians(lon2 - lon1);
+        Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c * 1000; // convert to meters
+
+        double height = el1 - el2;
+
+        distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+        return Math.sqrt(distance);
     }
 
     /**
@@ -523,12 +600,13 @@ public final class OcrCaptureActivity extends AppCompatActivity
             float I[] = new float[9];
             boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
             if (success) {
+                // TODO moving average over this orientation... say a window of size 10?
                 orientation = new float[3];
                 SensorManager.getOrientation(R, orientation);
-                float azimuth = orientation[0];
 
                 // Will output a value between 0 and 2pi
-                Log.d("AZAZ", Float.toString(azimuth));
+                // Log.d("AZAZ", Float.toString(azimuth));
+                // float azimuth = orientation[0];
             }
         }
     }
