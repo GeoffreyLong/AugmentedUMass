@@ -65,7 +65,9 @@ import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -120,7 +122,13 @@ public final class OcrCaptureActivity extends AppCompatActivity
     float[] mGravity;
     float[] mGeomagnetic;
     float[] orientation = new float[3];
+    double compassError = 0;
+    Queue<Double> compassErrors = new LinkedList<Double>();
 
+    LatLng lastLoc;
+    double lastHeading;
+    private LinkedList<Float> headings = new LinkedList<Float>();
+    boolean compassErrorSet = false;
 
     protected void onStart() {
         mGoogleApiClient.connect();
@@ -158,8 +166,8 @@ public final class OcrCaptureActivity extends AppCompatActivity
 
         mRequestingLocationUpdates = true;
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(10000);
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(500);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         tv_closest = (TextView) findViewById(R.id.textViewName);
@@ -167,6 +175,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
         rb_rating = (RatingBar) findViewById(R.id.ratingBar);
         tv_desc = (TextView) findViewById(R.id.textViewDescription);
 
+        double compassError = 0;
 
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_TO_FINE_LOCATION);
 
@@ -208,6 +217,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
             public void onResult(PlaceLikelihoodBuffer likelyPlaces) {
 
 
+                /*
                 int i = 0;
                 for(i = 0; i < likelyPlaces.getCount(); i++){
                     if(new LatLngBounds(new LatLng(0, 0), new LatLng(0, 0))
@@ -216,6 +226,7 @@ public final class OcrCaptureActivity extends AppCompatActivity
                         break;
                     }
                 }
+                */
 
                 /* OCR THINGS... not really using right now
                 IF we are using this, then we can include this as one of the likelihoods for our overall opinion
@@ -233,7 +244,12 @@ public final class OcrCaptureActivity extends AppCompatActivity
                 }
                 */
 
-                int mostLikely = i;
+
+                // Compass error calculation
+                if (!compassErrorSet) estimateCompassError();
+
+
+                int mostLikely = 0;
 
                 // Figure out the most likely location based on what you are facing and where you are
                 // The tricky thing is figuring out when to take distance into account over heading
@@ -241,11 +257,12 @@ public final class OcrCaptureActivity extends AppCompatActivity
                 // Could theoretically figure out if one place "occludes" the view of the other
                 // Could also use computer vision to estimate a distance to the location (possibly)
                 float curBearing = orientation[0];
-                double curBearingDeg = curBearing * 180.0 / Math.PI;
+                double curBearingDeg = curBearing * 180.0 / Math.PI + compassError;
+                curBearingDeg += 180;
                 double lowEstimate = 360;
                 // Subtract to guard overflow
                 double curDistance = Double.MAX_VALUE - 50;
-                for (i = 0; i < likelyPlaces.getCount(); i++) {
+                for (int i = 0; i < likelyPlaces.getCount(); i++) {
                     // Estimate the bearing from the user to the location
                     LatLng placeLoc = likelyPlaces.get(i).getPlace().getLatLng();
                     double estimatedBearing = bearing(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
@@ -273,7 +290,9 @@ public final class OcrCaptureActivity extends AppCompatActivity
                         // Or if the angle is great enough to overcome the buffer we placed, then we are good
                         // This buffer will not work for large buildings
                         // TODO might want to put a max distance greater than...
-                        if (estimatedDistance < curDistance + 20 || diffAngle >= Math.acos(curDistance/20.0)) {
+                        Log.d("COSINE", String.valueOf(Math.atan(10.0 / curDistance)));
+                        if (estimatedDistance <= 200 && (estimatedDistance < curDistance + 10
+                                || diffAngle >= Math.atan(10.0 / curDistance))) {
                             lowEstimate = curDifference;
                             curDistance = estimatedDistance;
                             curBearingDeg = estimatedBearing;
@@ -343,6 +362,46 @@ public final class OcrCaptureActivity extends AppCompatActivity
             }
         });
 
+    }
+
+    public void estimateCompassError() {
+        if (mPastLocation != null) {
+            double estimatedBearing = bearing(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(),
+                    mPastLocation.getLatitude(), mPastLocation.getLongitude());
+
+            double averageHeading = 0;
+            for (float h : headings) {
+                averageHeading += h;
+            }
+            averageHeading /= headings.size();
+
+            compassErrors.add(estimatedBearing - averageHeading);
+            if (compassErrors.size() > 10) {
+                compassErrors.poll();
+            }
+
+            double avgErr = 0;
+            for (double err : compassErrors) {
+                avgErr += err;
+            }
+            compassError = avgErr / compassErrors.size();
+
+            double sumSquared = 0;
+            for (double err : compassErrors) {
+                sumSquared += Math.pow((err - compassError), 2);
+            }
+            double stdDev = Math.sqrt(sumSquared);
+
+            Toast.makeText(this, String.valueOf(stdDev), Toast.LENGTH_LONG).show();
+
+            if (stdDev < 30 && compassErrors.size() >= 9) {
+                compassErrorSet = true;
+            }
+
+        }
+
+        mPastLocation = mCurrentLocation;
+        headings.clear();
     }
 
     protected static double bearing(double lat1, double lon1, double lat2, double lon2){
@@ -649,11 +708,16 @@ public final class OcrCaptureActivity extends AppCompatActivity
             if (success) {
                 // TODO moving average over this orientation... say a window of size 10?
                 orientation = new float[3];
+                SensorManager.remapCoordinateSystem(R, SensorManager.AXIS_X, SensorManager.AXIS_Z, orientation);
                 SensorManager.getOrientation(R, orientation);
 
+                if (!compassErrorSet) {
+                    headings.add((float) (orientation[0] * 180 / Math.PI + 180));
+                }
+
                 // Will output a value between 0 and 2pi
-                // Log.d("AZAZ", Float.toString(azimuth));
                 // float azimuth = orientation[0];
+                // Log.d("AZAZ", Double.toString(azimuth * 180.0 / Math.PI));
             }
         }
     }
